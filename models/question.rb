@@ -1,17 +1,17 @@
-# define question class to make getter and setter for id, prompt and answer
+# define question class to make getter and setter for id, question and answer
 class Question
 
    # constructor method
-   def initialize(id=0, prompt="", answer="")
-      @id, @prompt, @answer = id, prompt, answer
+   def initialize(id=0, question="", answer="")
+      @id, @question, @answer = id, question, answer
    end
 
    # getter methods
    def getID
       @id
    end
-   def getPrompt
-      @prompt
+   def getQuestion
+      @question
    end
    def getAnswer
       @answer
@@ -21,8 +21,8 @@ class Question
    def setID=(value)
       @id = value
    end
-   def setPrompt=(value)
-      @prompt = value
+   def setQuestion=(value)
+      @question = value
    end
    def setAnswer=(value)
       @answer = value

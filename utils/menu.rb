@@ -44,7 +44,7 @@ class Menu
             QuestionController.detail(no)
             display_menu()
         when 'answer_question'
-            QuestionController.answer(1, "26")
+            QuestionController.answer()
             display_menu()
         when 'exit'
             system('clear')

@@ -2,4 +2,7 @@
 
 bundle install
 
+# run unit test
+rspec
+
 # Do any other automated setup that you need to do here

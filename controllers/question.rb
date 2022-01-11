@@ -1,3 +1,6 @@
+#import package from gemfile dependency
+require 'numbers_in_words'
+
 #import classes from quiz master directory
 require_relative '../models/question'
 
@@ -5,7 +8,6 @@ require_relative '../models/question'
 class QuestionController
 
     @questions = Array.new
-    @question = Question.new()
 
     #list method to show questions
     def self.list()
@@ -13,7 +15,7 @@ class QuestionController
             puts "No | Question | Answer"
             
             for q in @questions
-                puts q.getID.to_s + " " + q.getPrompt + " " + q.getAnswer
+                puts q.getID.to_s + " " + q.getQuestion + " " + q.getAnswer
             end
         rescue Exception => e
             puts "Something Wrong: " + e.message
@@ -23,14 +25,14 @@ class QuestionController
     #detail method to show question detail
     def self.detail(id=0)
         begin
-            question = @questions.find { |q| q.getID == id }
+            q = @questions.find { |q| q.getID == id }
 
             # check if question detail found or not
-            if defined?(question.getPrompt) == nil
+            if defined?(q.getQuestion) == nil
                 puts "No Question found"
             else
-                puts "Q: " + question.getPrompt
-                puts "A: " + question.getAnswer
+                puts "Q: " + q.getQuestion
+                puts "A: " + q.getAnswer
             end
         rescue Exception => e
             puts "Something Wrong: " + e.message
@@ -45,19 +47,19 @@ class QuestionController
             no = gets.chomp
 
             puts "Question:"
-            prompt = gets.chomp
+            question = gets.chomp
 
             puts "Answer:"
             answer = gets.chomp
 
-            question = @questions.find { |q| q.getID == id }
+            q = @questions.find { |q| q.getID == no }
 
             # check if question already exists
-            if defined?(question.getPrompt) == nil
-                @questions.push(Question.new(no, prompt, answer))
+            if defined?(q.getQuestion) == nil
+                @questions.push(Question.new(no, question, answer))
 
                 puts "Question no " + no + " created"
-                puts "Q: " + prompt
+                puts "Q: " + question
                 puts "A: " + answer
             else
                 puts "Question no " + no + " already existed"
@@ -80,13 +82,13 @@ class QuestionController
             puts "Answer:"
             answer = gets.chomp
             
-            question = @questions.reject! { |q| q.getID == no } or nil
+            q = @questions.reject! { |q| q.getID == no } or nil
 
             # check if question detail found or not
-            if question == nil
+            if q == nil
                 puts "No Question found"
             else
-                @questions.push(Question.new(no, prompt, answer))
+                @questions.push(Question.new(no, question, answer))
 
                 puts "Question " + no + " was updated"
             end
@@ -98,14 +100,14 @@ class QuestionController
     #delete method to delete question per item by id
     def self.delete
         begin
-            # make user input for question and answer
+            # make user input for question no or id
             puts "No"
             no = gets.chomp
 
-            question = @questions.reject! { |q| q.getID == no } or nil
+            q = @questions.reject! { |q| q.getID == no } or nil
 
             # check if question detail found or not
-            if question == nil
+            if q == nil
                 puts "No Question found"
             else
                 puts "Question " + no + " was deleted"
@@ -116,15 +118,22 @@ class QuestionController
     end
 
     #answer method to show correct or wrong question
-    def self.answer(id=0, answer="")
+    def self.answer()
         begin
-            question = @questions.find { |q| q.getID == id }
+            # make user input for question and answer
+            puts "No"
+            no = gets.chomp
+
+            puts "Answer"
+            answer = NumbersInWords.in_numbers(gets.chomp)
+
+            q = @questions.find { |q| q.getID == no }
 
             # check if question detail found or not, if found shows answer correct or incorrect
-            if defined?(question.getPrompt) == nil
+            if defined?(q.getQuestion) == nil
                 puts "No Question found"
             else
-                puts question.getAnswer == answer ? "Correct" : "Incorrect"
+                puts q.getAnswer.to_i == answer.to_i ? "Correct" : "Incorrect"
             end
         rescue Exception => e
             puts "Something Wrong: " + e.message
