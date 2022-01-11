@@ -3,7 +3,7 @@
 Here are instructions to Run Quiz Master :
 
 1. run `bin/setup` to setup quiz master directory such as run bundle install and show unit test passes or not.
-2. run `bin/quiz_master`. It will show Welcome to Quiz Master then Please input your command.
+2. run `bin/quiz_master` or `ruby main.rb`. It will show Welcome to Quiz Master then Please input your command.
 3. There are commands at Quiz Master :
 - `create_question` | Creates a question will show :
     1. No, please input number. (No equals ID will be unique)
