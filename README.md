@@ -1,6 +1,6 @@
 # Quiz-Master
 
-To Run Quiz Master
+Here are instructions to Run Quiz Master :
 
 1. run `bin/setup` to setup quiz master directory such as run bundle install and show unit test passes or not.
 2. run `bin/quiz_master`. It will show Welcome to Quiz Master then Please input your command.
