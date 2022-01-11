@@ -31,3 +31,7 @@ Here are instructions to Run Quiz Master :
     1. No, please input number.
     2. Answer, please input answer such as 5 or five.
     3. Answer equals correct or incorrect or No Question found.
+
+- `help` to show commands.
+
+- `exit` to exit from Quiz Master Program.
